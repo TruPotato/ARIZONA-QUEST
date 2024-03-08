@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwjadv3ww8cb8"]
+
+[ext_resource type="Texture2D" uid="uid://3pt33m68nvku" path="res://Assets/Tilesets/testtiles.png" id="1_6f1ry"]
+[ext_resource type="PackedScene" uid="uid://wxc1byh57qqw" path="res://Assets/Scenes/Characters/TestArrow/TestArrow.tscn" id="2_jqt86"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(320, 240)
+texture = ExtResource("1_6f1ry")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 480)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(160, 90)
+limit_left = 0
+limit_top = 0
+
+[node name="TestArrow" parent="." instance=ExtResource("2_jqt86")]
+position = Vector2(160, 90)
