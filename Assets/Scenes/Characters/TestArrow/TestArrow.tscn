@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://wxc1byh57qqw"]
+[gd_scene load_steps=13 format=3 uid="uid://wxc1byh57qqw"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Characters/TestArrow/controller.gd" id="1_7dl4l"]
 [ext_resource type="Texture2D" uid="uid://cdxk2weqte1w0" path="res://Assets/Scenes/Characters/TestArrow/arrow1.png" id="2_bure3"]
+[ext_resource type="FontFile" uid="uid://tw6at7lahsdh" path="res://Assets/Fonts/AstronauticalFont.ttf" id="2_oe5ls"]
 [ext_resource type="Texture2D" uid="uid://bouah6ruelf34" path="res://Assets/Scenes/Characters/TestArrow/arrow7.png" id="3_o70cr"]
 [ext_resource type="Texture2D" uid="uid://cujysnjdotysn" path="res://Assets/Scenes/Characters/TestArrow/arrow8.png" id="4_b53hf"]
 [ext_resource type="Texture2D" uid="uid://b3gk8ffo7qkva" path="res://Assets/Scenes/Characters/TestArrow/arrow6.png" id="5_2umml"]
@@ -90,12 +91,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = -30.0
-offset_right = 39.0
+offset_left = -30.0
+offset_top = -20.0
+offset_right = 30.0
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_oe5ls")
+theme_override_font_sizes/normal_font_size = 11
 bbcode_enabled = true
 text = "[center](0, 0)[/center]"
 fit_content = true
