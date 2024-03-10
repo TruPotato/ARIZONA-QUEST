@@ -1,7 +1,39 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwjadv3ww8cb8"]
+[gd_scene load_steps=9 format=3 uid="uid://cwjadv3ww8cb8"]
 
 [ext_resource type="Texture2D" uid="uid://3pt33m68nvku" path="res://Assets/Tilesets/testtiles.png" id="1_6f1ry"]
 [ext_resource type="PackedScene" uid="uid://wxc1byh57qqw" path="res://Assets/Scenes/Characters/TestArrow/TestArrow.tscn" id="2_jqt86"]
+[ext_resource type="Texture2D" uid="uid://dbj68tgddjeqn" path="res://Assets/Tilesets/tilestyletest.png" id="3_bfnk7"]
+[ext_resource type="PackedScene" uid="uid://dtjm7n8qu2m6d" path="res://Assets/Scenes/testenemy.tscn" id="4_wx5le"]
+[ext_resource type="Script" path="res://testEnemy.gd" id="5_vtwdy"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_53djc"]
+texture = ExtResource("3_bfnk7")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_x7s64"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_53djc")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_iya6e"]
+vertices = PackedVector2Array(95, 127, 193, 111, 270, 111, 289, 145, 31, 31, 289, 31, 271, 33, 193, 33, 95, 81, 33, 81, 31, 145, 33, 127)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(1, 0, 8, 7), PackedInt32Array(4, 7, 8, 9), PackedInt32Array(10, 4, 9, 11), PackedInt32Array(3, 10, 11, 0), PackedInt32Array(5, 3, 2, 6)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(16, 160, 16, 112, 16, 16, 208, 16, 256, 16, 256, 48, 208, 48, 208, 96, 80, 96, 48, 96, 48, 112, 80, 112, 80, 96, 208, 96, 255.302, 96, 256, 16, 304, 16, 304, 160)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 15.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -20,3 +52,15 @@ limit_top = 0
 
 [node name="TestArrow" parent="." instance=ExtResource("2_jqt86")]
 position = Vector2(160, 90)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_x7s64")
+format = 2
+layer_0/tile_data = PackedInt32Array(4, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 65536, 0, 393219, 0, 1, 393220, 0, 1, 327693, 65536, 1, 262157, 65536, 1, 196621, 65536, 1, 196622, 65536, 1, 196623, 65536, 1, 262159, 65536, 1, 327695, 65536, 1, 327694, 65536, 1, 262158, 65536, 1, 19, 65536, 1, 65555, 65536, 1, 131091, 65536, 1, 196627, 65536, 1, 262163, 65536, 1, 327699, 65536, 1, 393235, 65536, 1, 458771, 65536, 1, 524307, 65536, 1, 589843, 65536, 1, 655379, 65536, 1, 655378, 65536, 1, 655377, 65536, 1, 655376, 65536, 1, 655375, 65536, 1, 655374, 65536, 1, 655373, 65536, 1, 655372, 65536, 1, 655371, 65536, 1, 655370, 65536, 1, 655369, 65536, 1, 655368, 65536, 1, 655367, 65536, 1, 655366, 65536, 1, 655365, 65536, 1, 655364, 65536, 1, 655363, 65536, 1, 655362, 65536, 1, 655361, 65536, 1, 655360, 65536, 1, 8, 65536, 1, 9, 65536, 1, 10, 65536, 1, 11, 65536, 1, 12, 65536, 1, 13, 65536, 1, 14, 65536, 1, 15, 65536, 1, 16, 65536, 1, 3, 65536, 1, 2, 65536, 1, 1, 65536, 1, 0, 65536, 1, 65536, 65536, 1, 131072, 65536, 1, 196608, 65536, 1, 262144, 65536, 1, 327680, 65536, 1, 393216, 65536, 1)
+
+[node name="testenemy" parent="." instance=ExtResource("4_wx5le")]
+position = Vector2(139, 118)
+script = ExtResource("5_vtwdy")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_iya6e")
