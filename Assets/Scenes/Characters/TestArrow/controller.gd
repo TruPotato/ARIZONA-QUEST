@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 100.0
-const FRICTION = 1000.0
+const SPEED = 150.0
+const FRICTION = 850.0
 var HEALTH = 3.0
 var DEBUG = true
 
