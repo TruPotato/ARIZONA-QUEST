@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtjm7n8qu2m6d"]
+
+[ext_resource type="Texture2D" uid="uid://doke4mvg51f7i" path="res://Assets/Sprites/testenemy.png" id="1_enjrv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvfgr"]
+radius = 8.06226
+
+[node name="testenemy" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_enjrv")
+
+[node name="stoogeArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="stoogeArea"]
+shape = SubResource("CircleShape2D_pvfgr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pvfgr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_max_distance = 1670.0
+avoidance_enabled = true
