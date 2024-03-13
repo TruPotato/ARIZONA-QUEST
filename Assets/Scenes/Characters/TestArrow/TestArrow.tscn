@@ -1,8 +1,9 @@
-[gd_scene load_steps=39 format=3 uid="uid://wxc1byh57qqw"]
+[gd_scene load_steps=51 format=3 uid="uid://wxc1byh57qqw"]
 
 [ext_resource type="Script" path="res://Assets/Scenes/Characters/TestArrow/controller.gd" id="1_7dl4l"]
 [ext_resource type="FontFile" uid="uid://tw6at7lahsdh" path="res://Assets/Fonts/AstronauticalFont.ttf" id="2_oe5ls"]
 [ext_resource type="Texture2D" uid="uid://dcq38y68da37h" path="res://Assets/Scenes/Characters/TestArrow/arrowsheet.png" id="3_r85s2"]
+[ext_resource type="Script" path="res://Assets/Scenes/Weapons/shortsword.gd" id="4_8vlrp"]
 [ext_resource type="Texture2D" uid="uid://c84tmf71wpr15" path="res://Assets/Sprites/Weapons/swordsheet.png" id="4_mkl0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0y6me"]
@@ -352,26 +353,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
-
-[sub_resource type="Animation" id="Animation_8fam6"]
-resource_name = "SwingRight"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3, 2]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_66rj3"]
 resource_name = "SwingLeft"
 length = 0.6
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -379,20 +377,143 @@ tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [3, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Hurtbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_vmlfs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Hurtbox:monitorable")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6f2cr"]
+resource_name = "SwingRight"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Hurtbox:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Hurtbox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kx6fp"]
 _data = {
 "Idle": SubResource("Animation_nw3lp"),
+"RESET": SubResource("Animation_vmlfs"),
 "SwingLeft": SubResource("Animation_66rj3"),
-"SwingRight": SubResource("Animation_8fam6")
+"SwingRight": SubResource("Animation_6f2cr")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4hlyy"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d5j7o"]
+animation = &"SwingLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vpb2f"]
+animation = &"SwingRight"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ttjo4"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uwqcv"]
+advance_mode = 2
+advance_condition = &"swing"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u0erf"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ljsb"]
+advance_mode = 2
+advance_condition = &"combo"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8jg0s"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xiych"]
+advance_mode = 2
+advance_condition = &"swing"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nnomy"]
+states/Idle/node = SubResource("AnimationNodeAnimation_4hlyy")
+states/Idle/position = Vector2(368, 100)
+states/SwingLeft/node = SubResource("AnimationNodeAnimation_d5j7o")
+states/SwingLeft/position = Vector2(500, 37)
+states/SwingRight/node = SubResource("AnimationNodeAnimation_vpb2f")
+states/SwingRight/position = Vector2(500, 171)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ttjo4"), "Idle", "SwingRight", SubResource("AnimationNodeStateMachineTransition_uwqcv"), "SwingRight", "Idle", SubResource("AnimationNodeStateMachineTransition_u0erf"), "SwingRight", "SwingLeft", SubResource("AnimationNodeStateMachineTransition_4ljsb"), "SwingLeft", "Idle", SubResource("AnimationNodeStateMachineTransition_8jg0s"), "SwingLeft", "SwingRight", SubResource("AnimationNodeStateMachineTransition_xiych")]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p1ykk"]
+size = Vector2(26, 13)
 
 [node name="TestArrow" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_7dl4l")
@@ -423,7 +544,7 @@ shape = SubResource("CircleShape2D_0y6me")
 texture = ExtResource("3_r85s2")
 hframes = 2
 vframes = 8
-frame = 4
+frame = 12
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Character"]
 libraries = {
@@ -436,22 +557,56 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_fqwge")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Directions/blend_position = Vector2(0.148118, 0.84141)
+parameters/Directions/blend_position = Vector2(-0.00400323, -0.947137)
 
-[node name="Weapon2" type="Node2D" parent="."]
+[node name="Weapon" type="Node2D" parent="."]
+script = ExtResource("4_8vlrp")
 
-[node name="WeaponSprite" type="Sprite2D" parent="Weapon2"]
-position = Vector2(0, -17)
+[node name="WeaponSprite" type="Sprite2D" parent="Weapon"]
+position = Vector2(17, 7.43094e-07)
+rotation = 1.5708
 texture = ExtResource("4_mkl0r")
 hframes = 4
-frame = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Weapon"]
 root_node = NodePath("../WeaponSprite")
 libraries = {
 "": SubResource("AnimationLibrary_kx6fp")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="Weapon2"]
+[node name="AnimationTree" type="AnimationTree" parent="Weapon"]
 root_node = NodePath("../WeaponSprite")
+libraries = {
+"": SubResource("AnimationLibrary_kx6fp")
+}
 tree_root = SubResource("AnimationNodeStateMachine_nnomy")
+anim_player = NodePath("../AnimationPlayer")
+parameters/conditions/combo = false
+parameters/conditions/swing = false
+
+[node name="Hurtbox" type="Area2D" parent="Weapon" groups=["WeaponHurtbox"]]
+rotation = 1.5708
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon/Hurtbox"]
+position = Vector2(0, -19.5)
+shape = SubResource("RectangleShape2D_p1ykk")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Weapon"]
+clip_contents = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 52.0
+offset_top = -71.0
+offset_right = 180.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_oe5ls")
+theme_override_font_sizes/normal_font_size = 11
+bbcode_enabled = true
+text = "[center]false[/center]"
+fit_content = true

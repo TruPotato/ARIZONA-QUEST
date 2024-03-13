@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dtjm7n8qu2m6d"]
+[gd_scene load_steps=4 format=3 uid="uid://dtjm7n8qu2m6d"]
 
-[ext_resource type="Texture2D" uid="uid://doke4mvg51f7i" path="res://Assets/Sprites/testenemy.png" id="1_enjrv"]
+[ext_resource type="Script" path="res://Assets/Scenes/Enemies/TestEnemy/testEnemy.gd" id="1_87r2d"]
+[ext_resource type="Texture2D" uid="uid://doke4mvg51f7i" path="res://Assets/Scenes/Enemies/TestEnemy/testenemy.png" id="1_enjrv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvfgr"]
 radius = 8.06226
 
 [node name="testenemy" type="CharacterBody2D"]
+script = ExtResource("1_87r2d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_enjrv")

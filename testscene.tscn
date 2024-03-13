@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwjadv3ww8cb8"]
+[gd_scene load_steps=8 format=3 uid="uid://cwjadv3ww8cb8"]
 
 [ext_resource type="Texture2D" uid="uid://3pt33m68nvku" path="res://Assets/Tilesets/testtiles.png" id="1_6f1ry"]
 [ext_resource type="PackedScene" uid="uid://wxc1byh57qqw" path="res://Assets/Scenes/Characters/TestArrow/TestArrow.tscn" id="2_jqt86"]
 [ext_resource type="Texture2D" uid="uid://dbj68tgddjeqn" path="res://Assets/Tilesets/tilestyletest.png" id="3_bfnk7"]
-[ext_resource type="PackedScene" uid="uid://dtjm7n8qu2m6d" path="res://Assets/Scenes/testenemy.tscn" id="4_wx5le"]
-[ext_resource type="Script" path="res://testEnemy.gd" id="5_vtwdy"]
+[ext_resource type="PackedScene" uid="uid://dtjm7n8qu2m6d" path="res://Assets/Scenes/Enemies/TestEnemy/testenemy.tscn" id="4_wx5le"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_53djc"]
 texture = ExtResource("3_bfnk7")
@@ -60,7 +59,6 @@ layer_0/tile_data = PackedInt32Array(4, 65536, 0, 5, 65536, 0, 6, 65536, 0, 7, 6
 
 [node name="testenemy" parent="." instance=ExtResource("4_wx5le")]
 position = Vector2(139, 118)
-script = ExtResource("5_vtwdy")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_iya6e")
